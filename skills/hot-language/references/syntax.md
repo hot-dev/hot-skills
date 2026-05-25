@@ -242,7 +242,7 @@ len length(numbers)     // 5
 ### Maps
 
 ```hot
-person {"name": "Alice", "age": 30}
+person {name: "Alice", age: 30}
 name person.name        // Dot notation for string keys
 age get(person, "age")  // Or use get()
 ```
@@ -372,11 +372,11 @@ fn (event) { ... }
 |------|-------------|---------|
 | `Str` | String | `"hello"`, `` `template` ``, `"""block"""`, `` ```block template``` `` |
 | `Int` | Integer | `42` |
-| `Dec` | Decimal, not binary floating point | `3.14` |
+| `Dec` | Decimal, not floating point | `3.14` |
 | `Bool` | Boolean | `true`, `false` |
 | `Null` | Null value | `null` |
 | `Vec` | Vector/Array | `[1, 2, 3]` |
-| `Map` | Key-value map | `{"a": 1}` |
+| `Map` | Key-value map | `{a: 1}` |
 | `Fn` | Function | `(x) { x }` |
 | `Any` | Any type | - |
 | `Bytes` | Byte array | - |
@@ -390,7 +390,7 @@ fn (event) { ... }
 numbers: Vec<Int> [1, 2, 3]
 
 // Map with key and value types
-scores: Map<Str, Int> {"alice": 100, "bob": 95}
+scores: Map<Str, Int> {alice: 100, bob: 95}
 
 // Function type
 mapper: Fn<Int, Int> (x) { mul(x, 2) }

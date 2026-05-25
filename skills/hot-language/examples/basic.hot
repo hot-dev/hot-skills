@@ -28,14 +28,11 @@ add-one fn (x: Int): Int {
     add(x, 1)
 }
 
-// Function with multiple parameters
-greet fn (name: Str, greeting: Str): Str {
-    `${greeting}, ${name}!`
-}
-
 // Optional arguments are modeled with multiple arities, not `=` defaults.
-greet-default fn (name: Str): Str {
-    greet(name, "Hello")
+greet fn
+(name: Str): Str { greet(name, "Hello") },
+(name: Str, greeting: Str): Str {
+    `${greeting}, ${name}!`
 }
 
 // Lambda (anonymous function)
@@ -73,7 +70,7 @@ item-count length(items)
 has-three some(items, eq(%, 3))
 
 // Map operations
-person {"name": "Alice", "age": 30, "city": "NYC"}
+person {name: "Alice", age: 30, city: "NYC"}
 person-name person.name
 person-age get(person, "age")
 has-email not(is-null(get(person, "email")))

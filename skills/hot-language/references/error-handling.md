@@ -80,8 +80,7 @@ message match result {
 ```
 
 Inside a `Result.Ok` or `Result.Err` match arm, using the matched variable reads
-the payload. Dot access also reaches into Ok payloads (`result.name`) without
-manual `$val` handling.
+the payload.
 
 > Closed-enum exhaustiveness: a `match` typed against `Result` requires a `_`
 > default arm because the runtime carries internal `OkVal`/`ErrVal` variants. If
@@ -190,10 +189,11 @@ validate fn (data: Map): Map {
 
 `fail` propagates up until a halt boundary catches it. Most code should let
 that happen — Hot's auto-unwrap is the idiomatic error path. Reach for
-`::hot::lang/try-call` only as an **escape hatch** when a fan-out loop must
-keep going after one item fails, or when you need to catch a runtime panic.
+`::hot::lang/try` only at a deliberate fault-isolation boundary, such as a
+fan-out loop where one item must be recorded without stopping the whole batch,
+or when you need to contain a runtime panic.
 For HTTP-specific transport errors, prefer `::hot::http/try-request` over
-wrapping `::hot::http/request` in `try-call`.
+wrapping `::hot::http/request` in `try`.
 
 ### Pattern 5: Result Combinators
 

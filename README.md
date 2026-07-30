@@ -6,7 +6,7 @@ AI Agent skills for the Hot programming language.
 
 ## Install
 
-Install the Hot language skill from the public skills ecosystem:
+Install the Hot skills from the public skills ecosystem:
 
 ```bash
 npx skills add hot-dev/hot-skills
@@ -31,11 +31,18 @@ hot ai add --global
 
 - `hot-language` - Write, edit, and review `.hot` files. Includes syntax rules,
   standard library notes, examples, and focused test fixtures.
+- `hot-ai-agents` - Build and review durable Hot AI agents and their
+  JavaScript/TypeScript, Python, Go, Rust, or Java SDK clients.
 
 ## Repository Layout
 
 ```text
 skills/
+  hot-ai-agents/
+    SKILL.md
+    agents/
+    references/
+    examples/
   hot-language/
     SKILL.md
     references/
@@ -52,9 +59,9 @@ npx skills add . --list
 ```
 
 The canonical skill files live in the `hot` repo under
-`resources/ai/skills/hot-language`. This repository mirrors those files so the
-skills can be listed on skills.sh and available via `npx skills`. After changing
-skill files in `hot`, sync this mirror from the `hot` checkout:
+`resources/ai/skills/`. This repository mirrors those files so the skills can
+be listed on skills.sh and available via `npx skills`. After changing skill
+files in `hot`, sync this mirror from the `hot` checkout:
 
 ```bash
 cd ../hot

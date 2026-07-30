@@ -1,15 +1,18 @@
 # AGENTS.md - Hot Skills Repository
 
 This repository publishes agent skills for the Hot programming language.
-`skills/hot-language/` mirrors the source files from the Hot CLI at
-`hot/resources/ai/skills/hot-language/` so they can be listed on skills.sh.
+Every directory under `skills/` mirrors its canonical source from
+`hot/resources/ai/skills/` so the skills can be listed on skills.sh.
 
 ## Workflow
 
 - Edit source files in the `hot` repo under `resources/ai/skills/`.
 - Do not commit installed `.skills/` copies or `hot-skill-hash` marker lines.
+- Write for users of the installed Hot product. Do not require a Hot source
+  checkout, local sibling packages, SDK repository clones, or internal apps;
+  use versioned registry dependencies and installed SDK surfaces.
 - Run `npx skills add . --list` to verify skills CLI discovery.
-- After changing the source skill, sync this mirror from the `hot` repo with
+- After changing a source skill, sync this mirror from the `hot` repo with
   `bash scripts/sync-ai-assets.sh ../hot-skills`.
 
 ## Hot Syntax Reminders
@@ -32,3 +35,5 @@ Every `.hot` file must start with a namespace declaration, for example:
 ```
 
 Use `skills/hot-language/references/` for detailed syntax and library context.
+Use `skills/hot-ai-agents/references/` for current agent architecture, package,
+durability, safety, streaming, and official SDK patterns.

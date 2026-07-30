@@ -1,0 +1,41 @@
+name: Skills
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3"
+
+      - name: Validate skill discovery
+        run: npx --yes skills add . --list
+
+      - name: Validate OpenAI skill metadata
+        run: |
+          ruby -ryaml -e '
+            files = Dir["skills/*/agents/openai.yaml"]
+            abort("no agents/openai.yaml files found") if files.empty?
+            files.each { |path| YAML.safe_load_file(path, aliases: false) }
+          '
+
+      - name: Reject installed-file markers
+        run: |
+          if grep -R -n "hot-skill-hash" skills; then
+            echo "Installed-file hash markers must not be committed."
+            exit 1
+          fi

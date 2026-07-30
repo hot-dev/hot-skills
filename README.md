@@ -18,9 +18,9 @@ For local development before this repository is published:
 npx skills add . --list
 ```
 
-Hot ships the source copy of these skills in the CLI. Use this when you want the
-version bundled with your installed Hot release and do not want a network
-dependency:
+The Hot CLI can install the skill snapshots bundled with that particular Hot
+release. Use this when you do not want a network dependency; available skills
+vary by Hot version, and `hot ai list` shows that release's catalog:
 
 ```bash
 hot ai add
@@ -69,8 +69,8 @@ cd ../hot
 ./scripts/check-ai-assets-sync.sh ../hot-skills
 ```
 
-Do not edit generated or installed copies under `.skills/`; those include
-`hot-skill-hash` markers and are not source files.
+Do not edit generated or installed copies under `.skills/`; the CLI tracks them
+with a hidden sidecar manifest and they are not source files.
 
 ## License
 

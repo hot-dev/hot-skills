@@ -7,11 +7,12 @@ Every directory under `skills/` mirrors its canonical source from
 ## Workflow
 
 - Edit source files in the `hot` repo under `resources/ai/skills/`.
-- Do not commit installed `.skills/` copies or `hot-skill-hash` marker lines.
+- Do not commit installed `.skills/` copies or their hidden sidecar manifests.
 - Write for users of the installed Hot product. Do not require a Hot source
   checkout, local sibling packages, SDK repository clones, or internal apps;
   use versioned registry dependencies and installed SDK surfaces.
 - Run `npx skills add . --list` to verify skills CLI discovery.
+- Keep `agents/openai.yaml` valid YAML; CI parses every metadata file.
 - After changing a source skill, sync this mirror from the `hot` repo with
   `bash scripts/sync-ai-assets.sh ../hot-skills`.
 

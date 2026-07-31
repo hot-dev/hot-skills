@@ -1,6 +1,9 @@
 # Hot Type System Reference
 
-Hot has a structural type system with type inference, custom types, enums, and type coercion.
+Hot is gradually typed. It infers and validates statically visible information,
+then uses `Any` where a value or shape is unresolved. Known records are checked
+structurally, while constructed types and enum variants retain nominal runtime
+tags used by matching, serialization, and dispatch.
 
 ## Built-in Types
 
@@ -385,6 +388,10 @@ User -> Map fn (u: User): Map {
 }
 ```
 
+Coercions are direct and one-hop. Hot does not search a chain such as
+`A -> B -> C` when a call requires `C`. Multiple applicable direct arrows are
+ambiguous rather than silently ordered.
+
 ### Top-Level Only
 
 Arrow declarations (`Source -> Target`) **must live at the top level of a
@@ -481,6 +488,11 @@ result add(1, 2)  // Int
 config {debug: true, port: 8080}  // Map<Str, Any>
 ```
 
+Inference is best-effort rather than whole-program proof. A known record can be
+checked against a required field shape; an unresolved `Map<Any, Any>` may be
+accepted and fail later when code requires a missing field. Add annotations at
+trust boundaries when stronger diagnostics matter.
+
 ## Optional and Nullable Types
 
 Use `?` suffix for optional types, or explicit union with `Null`:
@@ -513,15 +525,18 @@ greet fn
 
 ## Untyping for Serialization
 
-Typed values carry internal runtime metadata. User code should rely on normal
-field access, `match`, and `is-type`; use `untype` before serializing typed data
-for JSON APIs or storage that expects plain maps:
+Typed values carry a transparent runtime wrapper, not a source-level reflection
+API. Use normal field access, `match`, and `is-type`. `to-json` preserves type
+identity with tagged JSON whose wrapper uses `$type` and `$val`. Field access
+never exposes or skips through those wrapper members: `value.$val` means a
+payload field literally named `$val`. Call `untype` first only when an API or
+storage system expects untagged maps:
 
 ```hot
 User type { id: Str, email: Str }
 user User({id: "u1", email: "a@example.com"})
 
-to-json(user)          // includes internal type metadata
+to-json(user)          // tagged JSON that preserves the User type
 to-json(untype(user))  // {"id":"u1","email":"a@example.com"}
 ```
 

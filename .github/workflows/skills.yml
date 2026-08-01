@@ -23,14 +23,18 @@ jobs:
           ruby-version: "3.3"
 
       - name: Validate skill discovery
-        run: npx --yes skills add . --list
+        run: npx --yes skills@1.5.18 add . --list
 
       - name: Validate OpenAI skill metadata
         run: |
           ruby -ryaml -e '
-            files = Dir["skills/*/agents/openai.yaml"]
-            abort("no agents/openai.yaml files found") if files.empty?
-            files.each { |path| YAML.safe_load_file(path, aliases: false) }
+            skills = Dir["skills/*"].select { |path| File.directory?(path) }
+            abort("no skill directories found") if skills.empty?
+            skills.each do |skill|
+              path = File.join(skill, "agents", "openai.yaml")
+              abort("missing #{path}") unless File.file?(path)
+              YAML.safe_load(File.read(path), permitted_classes: [], permitted_symbols: [], aliases: false)
+            end
           '
 
       - name: Reject installed-file markers

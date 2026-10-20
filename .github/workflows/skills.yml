@@ -18,7 +18,7 @@ jobs:
         with:
           node-version: 24
 
-      - uses: ruby/setup-ruby@v1
+      - uses: ruby/setup-ruby@824c0e29fdfc7d689c191c27acc969d2d04b7dd8 # v1
         with:
           ruby-version: "3.3"
 

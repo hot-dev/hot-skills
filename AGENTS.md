@@ -28,6 +28,7 @@ mainstream languages:
 | `a == b` | `eq(a, b)` | Comparison is a function |
 | `if (x) { } else { }` | `if(x, then, else)` or `cond` | No if/else blocks |
 | `for x in items` | `map(items, ...)` | No loops |
+| `add (1, 2)` | `add(1, 2)` | A space before `(` never calls; it binds a variable |
 
 Every `.hot` file must start with a namespace declaration, for example:
 

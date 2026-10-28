@@ -192,6 +192,7 @@ value it names. A nullable subject (`Fruit?`) also needs a `null` arm.
 Otherwise the compiler reports `non-exhaustive-match` with the missing
 values:
 
+<!-- hot-check: skip -->
 ```hot
 Severity type "low" | "medium" | "high"
 
@@ -409,6 +410,7 @@ Import the enum type (`Shape ::geo/Shape`, then `Shape.Circle(...)`), or name
 the variant in full. Qualified variants work in calls, as values, in `match`
 arms, and as aliases. A variant's payload type can be qualified too:
 
+<!-- hot-check: skip -->
 ```hot
 b ::geo/Shape.Circle(radius: 2.0)
 c ::g/Shape.Circle({radius: 3.0})        // ::g is an alias of ::geo

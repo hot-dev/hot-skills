@@ -1,6 +1,6 @@
 # Hot Skills
 
-[![skills.sh](https://skills.sh/b/hot-dev/hot-skills)](https://skills.sh/hot-dev/hot-skills)
+[![skills.sh](https://skills.sh/b/hot-dev/hot-skills)](https://skills.sh/hot-dev/hot-skills/hot-language)
 
 AI Agent skills for the Hot programming language.
 
@@ -29,10 +29,15 @@ hot ai add --global
 
 ## Skills
 
-- `hot-language` - Write, edit, and review `.hot` files. Includes syntax rules,
-  standard library notes, examples, and focused test fixtures.
-- `hot-ai-agents` - Build and review durable Hot AI agents and their
-  JavaScript/TypeScript, Python, Go, Rust, or Java SDK clients.
+- [`hot-language`](https://skills.sh/hot-dev/hot-skills/hot-language) - Write,
+  edit, and review `.hot` files. Includes syntax rules, standard library notes,
+  examples, and focused test fixtures.
+- [`hot-ai-agents`](https://skills.sh/hot-dev/hot-skills/hot-ai-agents) - Build
+  and review durable Hot AI agents and their JavaScript/TypeScript, Python, Go,
+  Rust, or Java SDK clients.
+
+Each skill's `metadata.version` in `SKILL.md` changes whenever its content
+does, and a `vX.Y.Z` tag marks the snapshot that ships with that Hot release.
 
 ## Repository Layout
 

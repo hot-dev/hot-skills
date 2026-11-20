@@ -23,9 +23,16 @@ release. Use this when you do not want a network dependency; available skills
 vary by Hot version, and `hot ai list` shows that release's catalog:
 
 ```bash
-hot ai add
-hot ai add --global
+hot ai add             # project: .agents/skills/ and .claude/skills/
+hot ai add --global    # home folder: ~/.agents/skills/ and ~/.claude/skills/
 ```
+
+From Hot 3.0.13, these folders are where agents look: Codex, Cursor, Gemini
+CLI, GitHub Copilot and OpenCode read `.agents/skills/`, and Claude Code reads
+only `.claude/skills/`. Run `hot ai update` after upgrading Hot (`hot update`
+refreshes global skills itself). Hot 3.0.12 and earlier installed skills in
+`.skills/`, which agents don't read; `hot ai update` on 3.0.13 or later moves
+them.
 
 ## Skills
 
@@ -74,8 +81,9 @@ cd ../hot
 ./scripts/check-ai-assets-sync.sh ../hot-skills
 ```
 
-Do not edit generated or installed copies under `.skills/`; the CLI tracks them
-with a hidden sidecar manifest and they are not source files.
+Do not edit installed copies under `.agents/skills/`, `.claude/skills/` or the
+old `.skills/`; the CLI tracks them with a hidden sidecar manifest and they are
+not source files.
 
 ## License
 

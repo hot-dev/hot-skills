@@ -7,7 +7,8 @@ Every directory under `skills/` mirrors its canonical source from
 ## Workflow
 
 - Edit source files in the `hot` repo under `resources/ai/skills/`.
-- Do not commit installed `.skills/` copies or their hidden sidecar manifests.
+- Do not commit installed `.agents/skills/`, `.claude/skills/` or `.skills/`
+  copies or their hidden sidecar manifests.
 - Write for users of the installed Hot product. Do not require a Hot source
   checkout, local sibling packages, SDK repository clones, or internal apps;
   use versioned registry dependencies and installed SDK surfaces.
